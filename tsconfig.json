@@ -2,19 +2,13 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@assets/*": [
-        "assets/*"
-      ],
-      "@features/*": [
-        "src/features/*"
-      ],
-      "@navigation/*": [
-        "src/navigation/*"
-      ],
-      "@utils/*": [
-        "src/utils/*"
-      ]
-    }
+      "@assets/*": ["assets/*"],
+      "@features/*": ["src/features/*"],
+      "@navigation/*": ["src/navigation/*"],
+      "@utils/*": ["src/utils/*"]
+    },
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
   "extends": "expo/tsconfig.base"
 }

@@ -1,32 +1,19 @@
-import genesis from '@assets/text/Torah/Genesis.json';
-import exodus from '@assets/text/Torah/Exodus.json';
-import leviticus from '@assets/text/Torah/Leviticus.json';
-import numbers from '@assets/text/Torah/Numbers.json';
-import deuteronomy from '@assets/text/Torah/Deuteronomy.json';
+// src/features/books/hooks/useBooks.ts
 
-import prophetsPlaceholder from '@assets/text/Prophets/placeholder.json';
-import writingsPlaceholder from '@assets/text/Writings/placeholder.json';
-import mishnahPlaceholder from '@assets/text/Mishnah/placeholder.json';
-import bavliPlaceholder from '@assets/text/Bavli/placeholder.json';
+import { Category } from '../types';
 
-import { Book, Category } from '../types';
+import { torahBooks }    from '../data/torah';
+import { prophetsBooks } from '../data/prophets';
+import { writingsBooks } from '../data/writings';
+import { mishnahBooks }  from '../data/mishnah';
+import { bavliBooks }    from '../data/bavli';
 
 export function useBooks(): Category[] {
-  const torah: Book[] = [
-    genesis,
-    exodus,
-    leviticus,
-    numbers,
-    deuteronomy,
-  ];
-
-  const placeholder = (p: any): Book[] => [p];
-
   return [
-    { name: 'Torah', books: torah },
-    { name: 'Prophets', books: placeholder(prophetsPlaceholder) },
-    { name: 'Writings', books: placeholder(writingsPlaceholder) },
-    { name: 'Mishnah', books: placeholder(mishnahPlaceholder) },
-    { name: 'Bavli', books: placeholder(bavliPlaceholder) },
+    { name: 'Torah',    books: torahBooks    },
+    { name: 'Prophets', books: prophetsBooks },
+    { name: 'Writings', books: writingsBooks },
+    { name: 'Mishnah',  books: mishnahBooks  },
+    { name: 'Bavli',    books: bavliBooks    },
   ];
 }
