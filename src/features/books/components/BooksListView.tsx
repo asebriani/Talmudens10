@@ -8,20 +8,22 @@ interface Props {
   onBookPress: (book: Book) => void;
 }
 
-export const BooksListView: React.FC<Props> = ({
+export function BooksListView({
   categories,
   onBookPress,
-}) => (
-  <ScrollView contentContainerStyle={styles.container}>
-    {categories.map(category => (
-      <CategorySection
-        key={category.name}
-        category={category}
-        onBookPress={onBookPress}
-      />
-    ))}
-  </ScrollView>
-);
+}: Props): JSX.Element {
+  return (
+    <ScrollView contentContainerStyle={styles.container}>
+      {categories.map(category => (
+        <CategorySection
+          key={category.name}
+          category={category}
+          onBookPress={onBookPress}
+        />
+      ))}
+    </ScrollView>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {

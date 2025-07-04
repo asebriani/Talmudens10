@@ -20,10 +20,10 @@ interface Props {
   onBookPress?: (book: Book) => void;
 }
 
-export const CategorySection: React.FC<Props> = ({
+export function CategorySection({
   category,
-  onBookPress = (_book: Book) => {},   // ← default no-op matching the signature
-}) => {
+  onBookPress = (_book: Book) => {},
+}: Props): JSX.Element {
   const isMishnah = category.name === 'Mishnah';
 
   return (
@@ -33,7 +33,7 @@ export const CategorySection: React.FC<Props> = ({
       </Text>
       {category.books.map(book => (
         <BookItem
-          key={`${category.name}-${book.id}`}
+          key={`${category.name}-${book.title}`}
           book={book}
           onPress={() => onBookPress(book)}
           isMishnah={isMishnah}
@@ -41,7 +41,7 @@ export const CategorySection: React.FC<Props> = ({
       ))}
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   categorySection: {

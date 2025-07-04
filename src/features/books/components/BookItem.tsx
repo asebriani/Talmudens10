@@ -9,11 +9,11 @@ interface Props {
   isMishnah?: boolean;
 }
 
-export const BookItem: React.FC<Props> = ({
+export function BookItem({
   book,
   onPress,
   isMishnah = false,
-}) => {
+}: Props): JSX.Element {
   // Remove leading "משנה " if this is a Mishnah tractate
   const displayHeTitle = isMishnah
     ? book.heTitle.replace(/^משנה\s*/u, '')
@@ -27,7 +27,7 @@ export const BookItem: React.FC<Props> = ({
       <Text style={styles.heTitle}>{displayHeTitle}</Text>
     </Pressable>
   );
-};
+}
 
 const styles = StyleSheet.create({
   item: {
