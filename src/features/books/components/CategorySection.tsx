@@ -1,15 +1,17 @@
+// src/features/books/components/CategorySection.tsx
+
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { BookItem } from './BookItem';
 import type { Category, Book } from '../types';
 
-// Hebrew labels for each category
-const CATEGORY_LABELS: Record<string, string> = {
-  Torah: 'חומש',
+/** Hebrew labels for each category */
+export const CATEGORY_LABELS: Record<string, string> = {
+  Torah:    'חומש',
   Prophets: 'נביאים',
   Writings: 'כתובים',
-  Mishnah: 'משנה',
-  Bavli: 'תלמוד בבלי',
+  Mishnah:  'משנה',
+  Bavli:    'תלמוד בבלי',
 };
 
 interface Props {
@@ -32,7 +34,7 @@ export function CategorySection({
       <View style={styles.booksContainer}>
         {category.books.map(book => (
           <BookItem
-            key={`${category.name}-${book.title}`}
+            key={`${category.name}-${book.id}`}
             book={book}
             onPress={() => onBookPress(book)}
             isMishnah={isMishnah}

@@ -20,7 +20,7 @@ export default function App() {
         <Stack.Screen
           name="BooksList"
           component={BooksListScreen}
-          options={{ title: 'כל הספרים' }}
+          options={{ title: 'Books' }}
         />
         <Stack.Screen
           name="Book"

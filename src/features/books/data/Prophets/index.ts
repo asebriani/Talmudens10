@@ -1,7 +1,7 @@
-import { Book } from '../../types';
+// src/features/books/data/Prophets/index.ts
+import type { Book } from '../../types';
 import { talmudicOrder } from './order';
 
-// static imports from assets:
 import Joshua    from '@assets/text/Prophets/Joshua.json';
 import Judges    from '@assets/text/Prophets/Judges.json';
 import SamuelI   from '@assets/text/Prophets/SamuelI.json';
@@ -24,16 +24,32 @@ import Haggai    from '@assets/text/Prophets/Haggai.json';
 import Zechariah from '@assets/text/Prophets/Zechariah.json';
 import Malachi   from '@assets/text/Prophets/Malachi.json';
 
-const raw: Record<string, Book> = {
-  Joshua, Judges, SamuelI, SamuelII, KingsI, KingsII,
-  Isaiah, Jeremiah, Ezekiel,
-  Hosea, Joel, Amos, Obadiah, Jonah, Micah, Nahum,
-  Habakkuk, Zephaniah, Haggai, Zechariah, Malachi,
+const raw: Record<typeof talmudicOrder[number], Omit<Book, 'id'>> = {
+  Joshua,
+  Judges,
+  SamuelI,
+  SamuelII,
+  KingsI,
+  KingsII,
+  Isaiah,
+  Jeremiah,
+  Ezekiel,
+  Hosea,
+  Joel,
+  Amos,
+  Obadiah,
+  Jonah,
+  Micah,
+  Nahum,
+  Habakkuk,
+  Zephaniah,
+  Haggai,
+  Zechariah,
+  Malachi,
 };
 
-export const prophetsBooks: Book[] = talmudicOrder
-  .map(id => {
-    const book = raw[id];
-    if (!book) throw new Error(`Missing Prophets JSON for ${id}`);
-    return book;
-  });
+export const prophetsBooks: Book[] = talmudicOrder.map(id => {
+  const b = raw[id];
+  if (!b) throw new Error(`Missing Prophets data for "${id}"`);
+  return { id, title: b.title, heTitle: b.heTitle };
+});

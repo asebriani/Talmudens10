@@ -1,6 +1,6 @@
 // src/features/books/data/Bavli/index.ts
-
-import { Book } from '../../types';
+import type { Book } from '../../types';
+import { bavliOrder } from './order';
 
 import Arakhin      from '@assets/text/Bavli/Arakhin.json';
 import AvodahZarah  from '@assets/text/Bavli/AvodahZarah.json';
@@ -40,9 +40,7 @@ import Yevamot      from '@assets/text/Bavli/Yevamot.json';
 import Yoma         from '@assets/text/Bavli/Yoma.json';
 import Zevachim     from '@assets/text/Bavli/Zevachim.json';
 
-import { bavliOrder } from './order';
-
-const raw: Record<typeof bavliOrder[number], Book> = {
+const raw: Record<typeof bavliOrder[number], Omit<Book, 'id'>> = {
   Berakhot,
   Shabbat,
   Eruvin,
@@ -82,10 +80,8 @@ const raw: Record<typeof bavliOrder[number], Book> = {
   Niddah,
 };
 
-export const bavliBooks: Book[] = bavliOrder.map((id) => {
-  const book = raw[id];
-  if (!book) {
-    throw new Error(`Missing Bavli JSON for tractate "${id}"`);
-  }
-  return book;
+export const bavliBooks: Book[] = bavliOrder.map(id => {
+  const b = raw[id];
+  if (!b) throw new Error(`Missing Bavli data for "${id}"`);
+  return { id, title: b.title, heTitle: b.heTitle };
 });

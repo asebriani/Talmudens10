@@ -1,6 +1,6 @@
 // src/features/books/data/Mishnah/index.ts
-
-import { Book } from '../../types';
+import type { Book } from '../../types';
+import { mishnahOrder } from './order';
 
 import Arakhin       from '@assets/text/Mishnah/Arakhin.json';
 import AvodahZarah   from '@assets/text/Mishnah/AvodahZarah.json';
@@ -66,9 +66,7 @@ import Yoma          from '@assets/text/Mishnah/Yoma.json';
 import Zavim         from '@assets/text/Mishnah/Zavim.json';
 import Zevachim      from '@assets/text/Mishnah/Zevachim.json';
 
-import { mishnahOrder } from './order';
-
-const raw: Record<typeof mishnahOrder[number], Book> = {
+const raw: Record<typeof mishnahOrder[number], Omit<Book, 'id'>> = {
   Berakhot,
   Peah,
   Demai,
@@ -140,9 +138,7 @@ const raw: Record<typeof mishnahOrder[number], Book> = {
 };
 
 export const mishnahBooks: Book[] = mishnahOrder.map(id => {
-  const book = raw[id];
-  if (!book) {
-    throw new Error(`Missing Mishnah JSON for tractate "${id}"`);
-  }
-  return book;
+  const b = raw[id];
+  if (!b) throw new Error(`Missing Mishnah data for "${id}"`);
+  return { id, title: b.title, heTitle: b.heTitle };
 });
