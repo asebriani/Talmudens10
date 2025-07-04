@@ -35,19 +35,20 @@ export function PillButton({
 
 const styles = StyleSheet.create({
   button: {
-    alignSelf: 'flex-start',
     backgroundColor: '#eee',
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 4,
-    marginVertical: 4,
+    margin: 4,            // space on all sides for wrapping
+    borderWidth: 1,       // thin black border
+    borderColor: '#000',
   },
   buttonPressed: {
     backgroundColor: '#ddd',
   },
   label: {
     fontSize: 24,
-    textAlign: 'right',
+    textAlign: 'center',  // center the text inside the pill
     color: '#333',
   },
 });

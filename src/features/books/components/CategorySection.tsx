@@ -1,5 +1,3 @@
-// src/features/books/components/CategorySection.tsx
-
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { BookItem } from './BookItem';
@@ -31,14 +29,16 @@ export function CategorySection({
       <Text style={styles.categoryTitle}>
         {CATEGORY_LABELS[category.name] ?? category.name}
       </Text>
-      {category.books.map(book => (
-        <BookItem
-          key={`${category.name}-${book.title}`}
-          book={book}
-          onPress={() => onBookPress(book)}
-          isMishnah={isMishnah}
-        />
-      ))}
+      <View style={styles.booksContainer}>
+        {category.books.map(book => (
+          <BookItem
+            key={`${category.name}-${book.title}`}
+            book={book}
+            onPress={() => onBookPress(book)}
+            isMishnah={isMishnah}
+          />
+        ))}
+      </View>
     </View>
   );
 }
@@ -52,5 +52,10 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginBottom: 8,
     textAlign: 'right',
+  },
+  booksContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',        // allow pills to flow to next line
+    justifyContent: 'center' // center rows horizontally
   },
 });
