@@ -1,20 +1,33 @@
-import React from 'react'
-import { Pressable, Text, StyleSheet } from 'react-native'
-import type { Book } from '../types'
+import React from 'react';
+import { Pressable, Text, StyleSheet } from 'react-native';
+import type { Book } from '../types';
 
 interface Props {
-  book: Book
-  onPress: () => void
+  book: Book;
+  onPress: () => void;
+  /** Only strip the Hebrew "משנה " prefix when true */
+  isMishnah?: boolean;
 }
 
-export const BookItem: React.FC<Props> = ({ book, onPress }) => (
-  <Pressable
-    onPress={onPress}
-    style={({ pressed }) => [styles.item, pressed && styles.pressed]}
-  >
-    <Text style={styles.heTitle}>{book.heTitle}</Text>
-  </Pressable>
-)
+export const BookItem: React.FC<Props> = ({
+  book,
+  onPress,
+  isMishnah = false,
+}) => {
+  // Remove leading "משנה " if this is a Mishnah tractate
+  const displayHeTitle = isMishnah
+    ? book.heTitle.replace(/^משנה\s*/u, '')
+    : book.heTitle;
+
+  return (
+    <Pressable
+      onPress={onPress}
+      style={({ pressed }) => [styles.item, pressed && styles.pressed]}
+    >
+      <Text style={styles.heTitle}>{displayHeTitle}</Text>
+    </Pressable>
+  );
+};
 
 const styles = StyleSheet.create({
   item: {
@@ -27,4 +40,4 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: 'right',
   },
-})
+});
