@@ -16,7 +16,7 @@ import Eruvin       from '@assets/text/Bavli/Eruvin.json';
 import Gittin       from '@assets/text/Bavli/Gittin.json';
 import Horayot      from '@assets/text/Bavli/Horayot.json';
 import Keritot      from '@assets/text/Bavli/Keritot.json';
-import Ketuvot      from '@assets/text/Bavli/Ketuvot.json';
+import Ketubot      from '@assets/text/Bavli/Ketubot.json';
 import Kiddushin    from '@assets/text/Bavli/Kiddushin.json';
 import Makkot       from '@assets/text/Bavli/Makkot.json';
 import Megillah     from '@assets/text/Bavli/Megillah.json';
@@ -40,42 +40,52 @@ import Yevamot      from '@assets/text/Bavli/Yevamot.json';
 import Yoma         from '@assets/text/Bavli/Yoma.json';
 import Zevachim     from '@assets/text/Bavli/Zevachim.json';
 
-export const bavliBooks: Book[] = [
-  Arakhin,
-  AvodahZarah,
-  BavaBatra,
+import { bavliOrder } from './order';
+
+const raw: Record<typeof bavliOrder[number], Book> = {
+  Berakhot,
+  Shabbat,
+  Eruvin,
+  Pesachim,
+  Yoma,
+  Sukkah,
+  Beitzah,
+  RoshHashanah,
+  Taanit,
+  Megillah,
+  MoedKatan,
+  Chagigah,
+  Yevamot,
+  Ketubot,
+  Nedarim,
+  Nazir,
+  Sotah,
+  Gittin,
+  Kiddushin,
   BavaKamma,
   BavaMetzia,
-  Beitzah,
-  Bekhorot,
-  Berakhot,
-  Chagigah,
-  Chullin,
-  Eruvin,
-  Gittin,
-  Horayot,
-  Keritot,
-  Ketuvot,
-  Kiddushin,
-  Makkot,
-  Megillah,
-  Meilah,
-  Menachot,
-  MoedKatan,
-  Nazir,
-  Nedarim,
-  Niddah,
-  Pesachim,
-  RoshHashanah,
+  BavaBatra,
   Sanhedrin,
-  Shabbat,
+  Makkot,
   Shevuot,
-  Sotah,
-  Sukkah,
-  Taanit,
-  Tamid,
-  Temurah,
-  Yevamot,
-  Yoma,
+  AvodahZarah,
+  Horayot,
   Zevachim,
-];
+  Menachot,
+  Chullin,
+  Bekhorot,
+  Arakhin,
+  Temurah,
+  Keritot,
+  Meilah,
+  Tamid,
+  Niddah,
+};
+
+export const bavliBooks: Book[] = bavliOrder.map((id) => {
+  const book = raw[id];
+  if (!book) {
+    throw new Error(`Missing Bavli JSON for tractate "${id}"`);
+  }
+  return book;
+});

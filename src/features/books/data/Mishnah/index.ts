@@ -21,7 +21,7 @@ import Gittin        from '@assets/text/Mishnah/Gittin.json';
 import Horayot       from '@assets/text/Mishnah/Horayot.json';
 import Kelim         from '@assets/text/Mishnah/Kelim.json';
 import Keritot       from '@assets/text/Mishnah/Keritot.json';
-import Ketuvot       from '@assets/text/Mishnah/Ketuvot.json';
+import Ketubot       from '@assets/text/Mishnah/Ketubot.json';
 import Kiddushin     from '@assets/text/Mishnah/Kiddushin.json';
 import Kilayim       from '@assets/text/Mishnah/Kilayim.json';
 import Kinnim        from '@assets/text/Mishnah/Kinnim.json';
