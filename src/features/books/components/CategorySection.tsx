@@ -1,7 +1,7 @@
 // src/features/books/components/CategorySection.tsx
-
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { Row } from '../../../components/Layout/Row';
 import { BookItem } from './BookItem';
 import type { Category, Book } from '../types';
 
@@ -16,13 +16,12 @@ export const CATEGORY_LABELS: Record<string, string> = {
 
 interface Props {
   category: Category;
-  /** now optional */
   onBookPress?: (book: Book) => void;
 }
 
 export function CategorySection({
   category,
-  onBookPress = (_book: Book) => {},
+  onBookPress = () => {},
 }: Props): JSX.Element {
   const isMishnah = category.name === 'Mishnah';
 
@@ -31,7 +30,7 @@ export function CategorySection({
       <Text style={styles.categoryTitle}>
         {CATEGORY_LABELS[category.name] ?? category.name}
       </Text>
-      <View style={styles.booksContainer}>
+      <Row reverse style={styles.booksContainer}>
         {category.books.map(book => (
           <BookItem
             key={`${category.name}-${book.id}`}
@@ -40,7 +39,7 @@ export function CategorySection({
             isMishnah={isMishnah}
           />
         ))}
-      </View>
+      </Row>
     </View>
   );
 }
@@ -56,8 +55,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
   booksContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',        // allow pills to flow to next line
-    justifyContent: 'center' // center rows horizontally
+    flexWrap: 'wrap',
+    justifyContent: 'center',
   },
 });

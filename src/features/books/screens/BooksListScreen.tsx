@@ -1,20 +1,20 @@
 // src/features/books/screens/BooksListScreen.tsx
-
 import React, { useState } from 'react';
-import { ScrollView, View, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { useBooks } from '../hooks/useBooks';
 import { CATEGORY_LABELS, CategorySection } from '../components/CategorySection';
 import { PillButton } from '../../../components/PillButton';
+import { Row } from '../../../components/Layout/Row';
 import type { RootStackParamList } from '../../../App';
 import type { Book, Category } from '../types';
 
 type NavProp = NativeStackNavigationProp<RootStackParamList, 'BooksList'>;
 
 export function BooksListScreen(): JSX.Element {
-  const categories: Category[] = useBooks();
+  const categories = useBooks();
   const [selectedCategoryName, setSelectedCategoryName] = useState<string | null>(null);
   const navigation = useNavigation<NavProp>();
 
@@ -30,8 +30,7 @@ export function BooksListScreen(): JSX.Element {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* ────── Category Tier ────── */}
-      <View style={styles.categoryContainer}>
+      <Row reverse style={styles.categoryContainer}>
         {categories.map(cat => (
           <PillButton
             key={cat.name}
@@ -44,9 +43,8 @@ export function BooksListScreen(): JSX.Element {
             }
           />
         ))}
-      </View>
+      </Row>
 
-      {/* ────── Book Tier ────── */}
       {selectedCategory && (
         <CategorySection
           category={selectedCategory}
@@ -63,7 +61,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   categoryContainer: {
-    flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
     marginBottom: 16,
