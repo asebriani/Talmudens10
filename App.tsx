@@ -1,12 +1,33 @@
-import React from 'react';
-import { SafeAreaView, StatusBar } from 'react-native';
-import { BooksList } from '@features/books/components/BooksList';
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+
+import { BooksListScreen } from '@features/books/screens/BooksListScreen'
+import { BookScreen } from '@features/books/screens/BookScreen'
+import type { Book } from '@features/books/types'
+
+export type RootStackParamList = {
+  BooksList: undefined
+  Book: { book: Book }
+}
+
+const Stack = createNativeStackNavigator<RootStackParamList>()
 
 export default function App() {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <StatusBar barStyle="dark-content" />
-      <BooksList />
-    </SafeAreaView>
-  );
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="BooksList">
+        <Stack.Screen
+          name="BooksList"
+          component={BooksListScreen}
+          options={{ title: 'כל הספרים' }}
+        />
+        <Stack.Screen
+          name="Book"
+          component={BookScreen}
+          options={({ route }) => ({ title: route.params.book.title })}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
