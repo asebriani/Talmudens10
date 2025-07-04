@@ -1,3 +1,5 @@
+// src/features/books/components/CategorySection.tsx
+
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { BookItem } from './BookItem';
@@ -14,12 +16,13 @@ const CATEGORY_LABELS: Record<string, string> = {
 
 interface Props {
   category: Category;
-  onBookPress: (book: Book) => void;
+  /** now optional */
+  onBookPress?: (book: Book) => void;
 }
 
 export const CategorySection: React.FC<Props> = ({
   category,
-  onBookPress,
+  onBookPress = (_book: Book) => {},   // ← default no-op matching the signature
 }) => {
   const isMishnah = category.name === 'Mishnah';
 
@@ -30,7 +33,7 @@ export const CategorySection: React.FC<Props> = ({
       </Text>
       {category.books.map(book => (
         <BookItem
-          key={`${category.name}-${book.id ?? book.title}`}
+          key={`${category.name}-${book.id}`}
           book={book}
           onPress={() => onBookPress(book)}
           isMishnah={isMishnah}
