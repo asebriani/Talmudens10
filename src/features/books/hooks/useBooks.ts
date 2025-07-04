@@ -2,11 +2,11 @@
 
 import { Category } from '../types';
 
-import { torahBooks }    from '../data/torah';
-import { prophetsBooks } from '../data/prophets';
-import { writingsBooks } from '../data/writings';
-import { mishnahBooks }  from '../data/mishnah';
-import { bavliBooks }    from '../data/bavli';
+import { torahBooks }    from '../data/Torah';
+import { prophetsBooks } from '../data/Prophets';
+import { writingsBooks } from '../data/Writings';
+import { mishnahBooks }  from '../data/Mishnah';
+import { bavliBooks }    from '../data/Bavli';
 
 export function useBooks(): Category[] {
   return [

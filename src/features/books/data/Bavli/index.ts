@@ -1,6 +1,6 @@
-// src/features/books/data/bavli.ts
+// src/features/books/data/Bavli/index.ts
 
-import { Book } from '../types';
+import { Book } from '../../types';
 
 import Arakhin      from '@assets/text/Bavli/Arakhin.json';
 import AvodahZarah  from '@assets/text/Bavli/AvodahZarah.json';

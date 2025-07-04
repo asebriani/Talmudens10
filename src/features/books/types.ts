@@ -1,11 +1,12 @@
+// src/features/books/types.ts
+
 export interface Book {
-    title: string;
-    heTitle: string;
-    status?: 'locked' | 'unlocked' | 'placeholder';
-  }
-  
-  export interface Category {
-    name: string;
-    books: Book[];
-  }
-  
+  id: string;
+  title: string;
+  heTitle: string;
+}
+
+export interface Category {
+  name: string;
+  books: Book[];
+}

@@ -24,14 +24,13 @@ export const BooksList: React.FC = () => {
           <Text style={styles.categoryTitle}>
             {CATEGORY_LABELS[cat.name] ?? cat.name}
           </Text>
-
-          {cat.books[0].status === 'placeholder' ? (
-            <Text style={styles.placeholder}>Coming soon…</Text>
-          ) : (
-            cat.books.map((book, idx) => (
-              <BookItem key={idx} book={book} />
-            ))
-          )}
+          {cat.books.map(book => (
+            <BookItem
+              // fall back to title when id is undefined
+              key={`${cat.name}-${book.id ?? book.title}`}
+              book={book}
+            />
+          ))}
         </View>
       ))}
     </ScrollView>
@@ -52,12 +51,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '600',
     marginBottom: 8,
-    textAlign: 'right', // if you want Hebrew right-aligned
-  },
-
-  placeholder: {
-    fontStyle: 'italic',
-    color: '#999',
-    marginLeft: 8,
+    textAlign: 'right',
   },
 });
