@@ -1,24 +1,20 @@
 // src/features/books/screens/BooksListScreen.tsx
 
 import React, { useState } from 'react';
-import {
-  ScrollView,
-  View,
-  StyleSheet,
-} from 'react-native';
+import { ScrollView, View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { useBooks } from '../hooks/useBooks';
+import { CATEGORY_LABELS, CategorySection } from '../components/CategorySection';
 import { PillButton } from '../../../components/PillButton';
-import { CATEGORY_LABELS } from '../components/CategorySection';
 import type { RootStackParamList } from '../../../App';
-import type { Book } from '../types';
+import type { Book, Category } from '../types';
 
 type NavProp = NativeStackNavigationProp<RootStackParamList, 'BooksList'>;
 
 export function BooksListScreen(): JSX.Element {
-  const categories = useBooks();
+  const categories: Category[] = useBooks();
   const [selectedCategoryName, setSelectedCategoryName] = useState<string | null>(null);
   const navigation = useNavigation<NavProp>();
 
@@ -52,22 +48,10 @@ export function BooksListScreen(): JSX.Element {
 
       {/* ────── Book Tier ────── */}
       {selectedCategory && (
-        <View style={styles.booksContainer}>
-          {selectedCategory.books.map(book => {
-            const displayHeTitle =
-              selectedCategory.name === 'Mishnah'
-                ? book.heTitle.replace(/^משנה\s*/u, '')
-                : book.heTitle;
-
-            return (
-              <PillButton
-                key={`${selectedCategory.name}-${book.id}`}  // ← composite key
-                text={displayHeTitle}
-                onPress={() => handleBookPress(book)}
-              />
-            );
-          })}
-        </View>
+        <CategorySection
+          category={selectedCategory}
+          onBookPress={handleBookPress}
+        />
       )}
     </ScrollView>
   );
@@ -87,10 +71,5 @@ const styles = StyleSheet.create({
   categorySelected: {
     backgroundColor: '#ddd',
     borderColor: '#555',
-  },
-  booksContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
   },
 });

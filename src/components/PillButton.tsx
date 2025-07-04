@@ -1,15 +1,25 @@
-import React from 'react';
-import { Pressable, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
+// src/components/PillButton.tsx
 
-interface Props {
+import React from 'react';
+import {
+  Pressable,
+  Text,
+  StyleSheet,
+  StyleProp,
+  ViewStyle,
+  TextStyle,
+  PressableProps,
+} from 'react-native';
+
+export interface PillButtonProps
+  // inherit everything Pressable can do, except its own `style` and `children`
+  extends Omit<PressableProps, 'style' | 'children'> {
   /** Text to display inside the pill */
   text: string;
-  /** Callback when the pill is pressed */
-  onPress: () => void;
   /** Optional override for container style */
-  style?: ViewStyle;
+  style?: StyleProp<ViewStyle>;
   /** Optional override for text style */
-  textStyle?: TextStyle;
+  textStyle?: StyleProp<TextStyle>;
 }
 
 export function PillButton({
@@ -17,9 +27,11 @@ export function PillButton({
   onPress,
   style,
   textStyle,
-}: Props): JSX.Element {
+  ...pressableRest
+}: PillButtonProps): JSX.Element {
   return (
     <Pressable
+      {...pressableRest}
       onPress={onPress}
       android_ripple={{ color: '#ccc' }}
       style={({ pressed }) => [
