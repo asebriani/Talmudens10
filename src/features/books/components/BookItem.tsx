@@ -1,6 +1,6 @@
 import React from 'react';
-import { Pressable, Text, StyleSheet } from 'react-native';
 import type { Book } from '../types';
+import { PillButton } from '../../../components/PillButton';
 
 interface Props {
   book: Book;
@@ -14,30 +14,10 @@ export function BookItem({
   onPress,
   isMishnah = false,
 }: Props): JSX.Element {
-  // Remove leading "משנה " if this is a Mishnah tractate
+  // If this is a Mishnah tractate, drop the leading "משנה "
   const displayHeTitle = isMishnah
     ? book.heTitle.replace(/^משנה\s*/u, '')
     : book.heTitle;
 
-  return (
-    <Pressable
-      onPress={onPress}
-      style={({ pressed }) => [styles.item, pressed && styles.pressed]}
-    >
-      <Text style={styles.heTitle}>{displayHeTitle}</Text>
-    </Pressable>
-  );
+  return <PillButton text={displayHeTitle} onPress={onPress} />;
 }
-
-const styles = StyleSheet.create({
-  item: {
-    marginVertical: 8,
-  },
-  pressed: {
-    opacity: 0.6,
-  },
-  heTitle: {
-    fontSize: 24,
-    textAlign: 'right',
-  },
-});
