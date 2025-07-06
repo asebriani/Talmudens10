@@ -47,20 +47,32 @@ export function PillButton({
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#eee',
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    borderRadius: 4,
-    margin: 4,            // space on all sides for wrapping
-    borderWidth: 1,       // thin black border
-    borderColor: '#000',
+    backgroundColor: '#fafafa',       // a notch lighter than before
+    paddingVertical: 8,               // slightly more comfortable tap target
+    paddingHorizontal: 16,
+    borderRadius: 20,                // extra-rounded pill
+    margin: 4,                       // spacing when wrapping
+    borderWidth: 1,
+    borderColor: '#ccc',             // softer grey border
+
+    // iOS drop-shadow
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+
+    // Android elevation
+    elevation: 2,
   },
   buttonPressed: {
-    backgroundColor: '#ddd',
+    backgroundColor: '#e8e8e8',      // subtle darken on press
+    shadowOpacity: 0,                // flatten the shadow
+    elevation: 0,
   },
   label: {
-    fontSize: 24,
-    textAlign: 'center',  // center the text inside the pill
+    fontSize: 18,                    // slightly smaller for balance
+    textAlign: 'center',
     color: '#333',
   },
 });
+
