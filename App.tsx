@@ -1,17 +1,19 @@
-import React from 'react'
-import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+// App.tsx
 
-import { BooksListScreen } from '@features/books/screens/BooksListScreen'
-import { BookScreen } from '@features/books/screens/BookScreen'
-import type { Book } from '@features/books/types'
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import { BooksListScreen } from '@features/books/screens/BooksListScreen';
+import { BookScreen } from '@features/books/screens/BookScreen';
+import type { Book } from '@features/books/types';
 
 export type RootStackParamList = {
-  BooksList: undefined
-  Book: { book: Book }
-}
+  BooksList: undefined;
+  Book: { book: Book; section?: number };
+};
 
-const Stack = createNativeStackNavigator<RootStackParamList>()
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
@@ -29,5 +31,5 @@ export default function App() {
         />
       </Stack.Navigator>
     </NavigationContainer>
-  )
+  );
 }

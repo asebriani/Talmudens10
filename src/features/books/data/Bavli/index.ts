@@ -1,4 +1,5 @@
 // src/features/books/data/Bavli/index.ts
+
 import type { Book } from '../../types';
 import { bavliOrder } from './order';
 
@@ -41,47 +42,21 @@ import Yoma         from '@assets/text/Bavli/Yoma.json';
 import Zevachim     from '@assets/text/Bavli/Zevachim.json';
 
 const raw: Record<typeof bavliOrder[number], Omit<Book, 'id'>> = {
-  Berakhot,
-  Shabbat,
-  Eruvin,
-  Pesachim,
-  Yoma,
-  Sukkah,
-  Beitzah,
-  RoshHashanah,
-  Taanit,
-  Megillah,
-  MoedKatan,
-  Chagigah,
-  Yevamot,
-  Ketubot,
-  Nedarim,
-  Nazir,
-  Sotah,
-  Gittin,
-  Kiddushin,
-  BavaKamma,
-  BavaMetzia,
-  BavaBatra,
-  Sanhedrin,
-  Makkot,
-  Shevuot,
-  AvodahZarah,
-  Horayot,
-  Zevachim,
-  Menachot,
-  Chullin,
-  Bekhorot,
-  Arakhin,
-  Temurah,
-  Keritot,
-  Meilah,
-  Tamid,
-  Niddah,
+  Berakhot, Shabbat, Eruvin, Pesachim, Yoma, Sukkah, Beitzah,
+  RoshHashanah, Taanit, Megillah, MoedKatan, Chagigah,
+  Yevamot, Ketubot, Nedarim, Nazir, Sotah, Gittin, Kiddushin,
+  BavaKamma, BavaMetzia, BavaBatra, Sanhedrin, Makkot, Shevuot,
+  AvodahZarah, Horayot, Zevachim, Menachot, Chullin, Bekhorot,
+  Arakhin, Temurah, Keritot, Meilah, Tamid, Niddah,
 };
 
 export const bavliBooks: Book[] = bavliOrder.map(id => {
   const b = raw[id];
   if (!b) throw new Error(`Missing Bavli data for "${id}"`);
-  return { id, title: b.title, heTitle: b.heTitle };
+  return {
+    id,
+    title:   b.title,
+    heTitle: b.heTitle,
+    text:    b.text,
+  };
 });

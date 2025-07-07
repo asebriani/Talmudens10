@@ -1,4 +1,5 @@
 // src/features/books/data/Torah/index.ts
+
 import type { Book } from '../../types';
 import { torahOrder } from './order';
 
@@ -19,5 +20,10 @@ const raw: Record<typeof torahOrder[number], Omit<Book, 'id'>> = {
 export const torahBooks: Book[] = torahOrder.map(id => {
   const b = raw[id];
   if (!b) throw new Error(`Missing Torah data for "${id}"`);
-  return { id, title: b.title, heTitle: b.heTitle };
+  return {
+    id,
+    title:   b.title,
+    heTitle: b.heTitle,
+    text:    b.text,
+  };
 });

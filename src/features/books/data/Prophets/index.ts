@@ -1,4 +1,5 @@
 // src/features/books/data/Prophets/index.ts
+
 import type { Book } from '../../types';
 import { talmudicOrder } from './order';
 
@@ -25,31 +26,19 @@ import Zechariah from '@assets/text/Prophets/Zechariah.json';
 import Malachi   from '@assets/text/Prophets/Malachi.json';
 
 const raw: Record<typeof talmudicOrder[number], Omit<Book, 'id'>> = {
-  Joshua,
-  Judges,
-  SamuelI,
-  SamuelII,
-  KingsI,
-  KingsII,
-  Isaiah,
-  Jeremiah,
-  Ezekiel,
-  Hosea,
-  Joel,
-  Amos,
-  Obadiah,
-  Jonah,
-  Micah,
-  Nahum,
-  Habakkuk,
-  Zephaniah,
-  Haggai,
-  Zechariah,
-  Malachi,
+  Joshua, Judges, SamuelI, SamuelII, KingsI, KingsII,
+  Isaiah, Jeremiah, Ezekiel,
+  Hosea, Joel, Amos, Obadiah, Jonah, Micah, Nahum,
+  Habakkuk, Zephaniah, Haggai, Zechariah, Malachi,
 };
 
 export const prophetsBooks: Book[] = talmudicOrder.map(id => {
   const b = raw[id];
   if (!b) throw new Error(`Missing Prophets data for "${id}"`);
-  return { id, title: b.title, heTitle: b.heTitle };
+  return {
+    id,
+    title:   b.title,
+    heTitle: b.heTitle,
+    text:    b.text,
+  };
 });

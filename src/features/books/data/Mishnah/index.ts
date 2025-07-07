@@ -1,4 +1,5 @@
 // src/features/books/data/Mishnah/index.ts
+
 import type { Book } from '../../types';
 import { mishnahOrder } from './order';
 
@@ -67,78 +68,27 @@ import Zavim         from '@assets/text/Mishnah/Zavim.json';
 import Zevachim      from '@assets/text/Mishnah/Zevachim.json';
 
 const raw: Record<typeof mishnahOrder[number], Omit<Book, 'id'>> = {
-  Berakhot,
-  Peah,
-  Demai,
-  Kilayim,
-  Sheviit,
-  Terumot,
-  Maasrot,
-  MaaserSheni,
-  Challah,
-  Orlah,
-  Bikkurim,
-
-  Shabbat,
-  Eruvin,
-  Pesachim,
-  Shekalim,
-  Yoma,
-  Sukkah,
-  Beitzah,
-  RoshHashanah,
-  Taanit,
-  Megillah,
-  MoedKatan,
-  Chagigah,
-
-  Yevamot,
-  Ketubot,
-  Nedarim,
-  Nazir,
-  Sotah,
-  Gittin,
-  Kiddushin,
-
-  BavaKamma,
-  BavaMetzia,
-  BavaBatra,
-  Sanhedrin,
-  Makkot,
-  Shevuot,
-  Eduyot,
-  AvodahZarah,
-  Horayot,
-  PirkeiAvot,
-
-  Zevachim,
-  Menachot,
-  Chullin,
-  Bekhorot,
-  Arakhin,
-  Temurah,
-  Keritot,
-  Meilah,
-  Tamid,
-  Middot,
-  Kinnim,
-
-  Kelim,
-  Oholot,
-  Negaim,
-  Parah,
-  Tahorot,
-  Mikvaot,
-  Niddah,
-  Makhshirin,
-  Zavim,
-  TevulYom,
-  Yadayim,
-  Oktzin,
+  Berakhot, Peah, Demai, Kilayim, Sheviit, Terumot,
+  Maasrot, MaaserSheni, Challah, Orlah, Bikkurim,
+  Shabbat, Eduyot, Eruvin, Pesachim, Shekalim, Yoma,
+  Sukkah, Beitzah, RoshHashanah, Taanit, Megillah,
+  MoedKatan, Chagigah,
+  Yevamot, Ketubot, Nedarim, Nazir, Sotah, Gittin, Kiddushin,
+  BavaKamma, BavaMetzia, BavaBatra, Sanhedrin, Makkot, Shevuot,
+  AvodahZarah, Horayot, PirkeiAvot,
+  Zevachim, Menachot, Chullin, Bekhorot, Arakhin, Temurah,
+  Keritot, Meilah, Tamid, Middot, Kinnim,
+  Kelim, Oholot, Negaim, Parah, Tahorot, Mikvaot,
+  Niddah, Makhshirin, Zavim, TevulYom, Yadayim, Oktzin,
 };
 
 export const mishnahBooks: Book[] = mishnahOrder.map(id => {
   const b = raw[id];
   if (!b) throw new Error(`Missing Mishnah data for "${id}"`);
-  return { id, title: b.title, heTitle: b.heTitle };
+  return {
+    id,
+    title:   b.title,
+    heTitle: b.heTitle,
+    text:    b.text,
+  };
 });

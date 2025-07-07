@@ -1,54 +1,78 @@
 // src/features/books/screens/BooksListScreen.tsx
+
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { useBooks } from '../hooks/useBooks';
 import { CATEGORY_LABELS, CategorySection } from '../components/CategorySection';
+import { SectionPicker } from '../components/SectionPicker';
 import { PillButton } from '../../../components/PillButton';
 import { Row } from '../../../components/Layout/Row';
-import type { RootStackParamList } from '../../../App';
+
+import type { RootStackParamList } from '../../../../App';
 import type { Book, Category } from '../types';
 
-type NavProp = NativeStackNavigationProp<RootStackParamList, 'BooksList'>;
+type Props = NativeStackScreenProps<RootStackParamList, 'BooksList'>;
 
-export function BooksListScreen(): JSX.Element {
+export function BooksListScreen({ navigation }: Props): JSX.Element {
   const categories = useBooks();
+
   const [selectedCategoryName, setSelectedCategoryName] = useState<string | null>(null);
-  const navigation = useNavigation<NavProp>();
+  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
+  const [selectedSection, setSelectedSection] = useState<number | null>(null);
 
   const handleCategoryPress = (name: string) => {
     setSelectedCategoryName(prev => (prev === name ? null : name));
+    setSelectedBook(null);
+    setSelectedSection(null);
   };
 
   const handleBookPress = (book: Book) => {
-    navigation.navigate('Book', { book });
+    setSelectedBook(book);
+    setSelectedSection(null);
   };
 
   const selectedCategory = categories.find(c => c.name === selectedCategoryName);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      {/* Category picker */}
       <Row reverse style={styles.categoryContainer}>
         {categories.map(cat => (
           <PillButton
             key={cat.name}
             text={CATEGORY_LABELS[cat.name] ?? cat.name}
             onPress={() => handleCategoryPress(cat.name)}
-            style={
-              selectedCategoryName === cat.name
-                ? styles.categorySelected
-                : undefined
-            }
+            style={selectedCategoryName === cat.name ? styles.categorySelected : undefined}
           />
         ))}
       </Row>
 
+      {/* Book picker */}
       {selectedCategory && (
         <CategorySection
           category={selectedCategory}
           onBookPress={handleBookPress}
+        />
+      )}
+
+      {/* Section picker */}
+      {selectedBook && (
+        <SectionPicker
+          sections={Array.from(
+            { length: (selectedBook as any).text.length },
+            (_, i) => i + 1
+          )}
+          selected={selectedSection}
+          onSelect={section => {
+            setSelectedSection(section);
+            navigation.navigate('Book', {
+              book: selectedBook,
+              section,
+            });
+          }}
+          label={selectedCategoryName === 'Bavli' ? 'Daf' : 'Chapter'}
         />
       )}
     </ScrollView>

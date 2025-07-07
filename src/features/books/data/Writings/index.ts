@@ -1,4 +1,5 @@
 // src/features/books/data/Writings/index.ts
+
 import type { Book } from '../../types';
 import { writingsOrder } from './order';
 
@@ -17,23 +18,18 @@ import ChroniclesI   from '@assets/text/Writings/ChroniclesI.json';
 import ChroniclesII  from '@assets/text/Writings/ChroniclesII.json';
 
 const raw: Record<typeof writingsOrder[number], Omit<Book, 'id'>> = {
-  Psalms,
-  Proverbs,
-  Job,
-  SongOfSongs,
-  Ruth,
-  Lamentations,
-  Ecclesiastes,
-  Esther,
-  Daniel,
-  Ezra,
-  Nehemiah,
-  ChroniclesI,
-  ChroniclesII,
+  Psalms, Proverbs, Job, SongOfSongs, Ruth,
+  Lamentations, Ecclesiastes, Esther, Daniel,
+  Ezra, Nehemiah, ChroniclesI, ChroniclesII,
 };
 
 export const writingsBooks: Book[] = writingsOrder.map(id => {
   const b = raw[id];
   if (!b) throw new Error(`Missing Writings data for "${id}"`);
-  return { id, title: b.title, heTitle: b.heTitle };
+  return {
+    id,
+    title:   b.title,
+    heTitle: b.heTitle,
+    text:    b.text,
+  };
 });
