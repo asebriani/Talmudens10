@@ -1,4 +1,5 @@
 // src/features/books/screens/BooksListScreen.tsx
+
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -81,7 +82,7 @@ export function BooksListScreen({ navigation }: Props): JSX.Element {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
-    backgroundColor: '#fff',
+    // backgroundColor: none, so you get the default background color
   },
   categoryContainer: {
     flexWrap: 'wrap',
