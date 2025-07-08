@@ -1,0 +1,383 @@
+{
+    "parshiyot": [
+      {
+        "name": "Bereshit",
+        "hebrewName": "בְּרֵאשִׁית",
+        "book": "Genesis",
+        "start": { "chapter": 1, "verse": 1 },
+        "end": { "chapter": 6, "verse": 8 }
+      },
+      {
+        "name": "Noach",
+        "hebrewName": "נֹחַ",
+        "book": "Genesis",
+        "start": { "chapter": 6, "verse": 9 },
+        "end": { "chapter": 11, "verse": 32 }
+      },
+      {
+        "name": "Lech-Lecha",
+        "hebrewName": "לֶךְ לְךָ",
+        "book": "Genesis",
+        "start": { "chapter": 12, "verse": 1 },
+        "end": { "chapter": 17, "verse": 27 }
+      },
+      {
+        "name": "Vayera",
+        "hebrewName": "וַיֵּרָא",
+        "book": "Genesis",
+        "start": { "chapter": 18, "verse": 1 },
+        "end": { "chapter": 22, "verse": 24 }
+      },
+      {
+        "name": "Chayei Sarah",
+        "hebrewName": "חַיֵּי שָׂרָה",
+        "book": "Genesis",
+        "start": { "chapter": 23, "verse": 1 },
+        "end": { "chapter": 25, "verse": 18 }
+      },
+      {
+        "name": "Toldot",
+        "hebrewName": "תּוֹלְדוֹת",
+        "book": "Genesis",
+        "start": { "chapter": 25, "verse": 19 },
+        "end": { "chapter": 28, "verse": 9 }
+      },
+      {
+        "name": "Vayetze",
+        "hebrewName": "וַיֵּצֵא",
+        "book": "Genesis",
+        "start": { "chapter": 28, "verse": 10 },
+        "end": { "chapter": 32, "verse": 3 }
+      },
+      {
+        "name": "Vayishlach",
+        "hebrewName": "וַיִּשְׁלַח",
+        "book": "Genesis",
+        "start": { "chapter": 32, "verse": 4 },
+        "end": { "chapter": 36, "verse": 43 }
+      },
+      {
+        "name": "Vayeshev",
+        "hebrewName": "וַיֵּשֶׁב",
+        "book": "Genesis",
+        "start": { "chapter": 37, "verse": 1 },
+        "end": { "chapter": 40, "verse": 23 }
+      },
+      {
+        "name": "Miketz",
+        "hebrewName": "מִקֵּץ",
+        "book": "Genesis",
+        "start": { "chapter": 41, "verse": 1 },
+        "end": { "chapter": 44, "verse": 17 }
+      },
+      {
+        "name": "Vayigash",
+        "hebrewName": "וַיִּגַּשׁ",
+        "book": "Genesis",
+        "start": { "chapter": 44, "verse": 18 },
+        "end": { "chapter": 47, "verse": 27 }
+      },
+      {
+        "name": "Vayechi",
+        "hebrewName": "וַיְחִי",
+        "book": "Genesis",
+        "start": { "chapter": 47, "verse": 28 },
+        "end": { "chapter": 50, "verse": 26 }
+      },
+      {
+        "name": "Shemot",
+        "hebrewName": "שְׁמוֹת",
+        "book": "Exodus",
+        "start": { "chapter": 1, "verse": 1 },
+        "end": { "chapter": 6, "verse": 1 }
+      },
+      {
+        "name": "Va'eira",
+            "hebrewName": "וארא",
+        "book": "Exodus",
+        "start": { "chapter": 6, "verse": 2 },
+        "end": { "chapter": 9, "verse": 35 }
+      },
+      {
+        "name": "Bo",
+        "hebrewName": "בֹּא",
+        "book": "Exodus",
+        "start": { "chapter": 10, "verse": 1 },
+        "end": { "chapter": 13, "verse": 16 }
+      },
+      {
+        "name": "Beshalach",
+        "hebrewName": "בְּשַׁלַח",
+        "book": "Exodus",
+        "start": { "chapter": 13, "verse": 17 },
+        "end": { "chapter": 17, "verse": 16 }
+      },
+      {
+        "name": "Yitro",
+        "hebrewName": "יִתְרוֹ",
+        "book": "Exodus",
+        "start": { "chapter": 18, "verse": 1 },
+        "end": { "chapter": 20, "verse": 23 }
+      },
+      {
+        "name": "Mishpatim",
+        "hebrewName": "מִשְׁפָּטִים",
+        "book": "Exodus",
+        "start": { "chapter": 21, "verse": 1 },
+        "end": { "chapter": 24, "verse": 18 }
+      },
+      {
+        "name": "Terumah",
+        "hebrewName": "תְּרוּמָה",
+        "book": "Exodus",
+        "start": { "chapter": 25, "verse": 1 },
+        "end": { "chapter": 27, "verse": 19 }
+      },
+      {
+        "name": "Tetzaveh",
+        "hebrewName": "תְּצָוֶה",
+        "book": "Exodus",
+        "start": { "chapter": 27, "verse": 20 },
+        "end": { "chapter": 30, "verse": 10 }
+      },
+      {
+        "name": "Ki Tisa",
+        "hebrewName": "כִּי תִשָּׂא",
+        "book": "Exodus",
+        "start": { "chapter": 30, "verse": 11 },
+        "end": { "chapter": 34, "verse": 35 }
+      },
+      {
+        "name": "Vayakhel",
+        "hebrewName": "וַיָּקֶהל",
+        "book": "Exodus",
+        "start": { "chapter": 35, "verse": 1 },
+        "end": { "chapter": 38, "verse": 20 }
+      },
+      {
+        "name": "Pekudei",
+        "hebrewName": "פְּקודֵּי",
+        "book": "Exodus",
+        "start": { "chapter": 38, "verse": 21 },
+        "end": { "chapter": 40, "verse": 38 }
+      },
+      {
+        "name": "Vayikra",
+        "hebrewName": "וַיִּקְרָא",
+        "book": "Leviticus",
+        "start": { "chapter": 1, "verse": 1 },
+        "end": { "chapter": 5, "verse": 26 }
+      },
+      {
+        "name": "Tzav",
+        "hebrewName": "צו",
+        "book": "Leviticus",
+        "start": { "chapter": 6, "verse": 1 },
+        "end": { "chapter": 8, "verse": 36 }
+      },
+      {
+        "name": "Shemini",
+        "hebrewName": "שְׁמִינִי",
+        "book": "Leviticus",
+        "start": { "chapter": 9, "verse": 1 },
+        "end": { "chapter": 11, "verse": 47 }
+      },
+      {
+        "name": "Tazria",
+        "hebrewName": "תַּזְרִיעַ",
+        "book": "Leviticus",
+        "start": { "chapter": 12, "verse": 1 },
+        "end": { "chapter": 13, "verse": 59 }
+      },
+      {
+        "name": "Metzora",
+        "hebrewName": "מֵצֹורָע",
+        "book": "Leviticus",
+        "start": { "chapter": 14, "verse": 1 },
+        "end": { "chapter": 15, "verse": 33 }
+      },
+      {
+        "name": "Acharei Mot",
+        "hebrewName": "אַחֲרֵי מוֹת",
+        "book": "Leviticus",
+        "start": { "chapter": 16, "verse": 1 },
+        "end": { "chapter": 18, "verse": 30 }
+      },
+      {
+        "name": "Kedoshim",
+        "hebrewName": "קְדושִׁים",
+        "book": "Leviticus",
+        "start": { "chapter": 19, "verse": 1 },
+        "end": { "chapter": 20, "verse": 27 }
+      },
+      {
+        "name": "Emor",
+        "hebrewName": "אֱמֹור",
+        "book": "Leviticus",
+        "start": { "chapter": 21, "verse": 1 },
+        "end": { "chapter": 24, "verse": 23 }
+      },
+      {
+        "name": "Behar",
+        "hebrewName": "בְּהַר",
+        "book": "Leviticus",
+        "start": { "chapter": 25, "verse": 1 },
+        "end": { "chapter": 26, "verse": 2 }
+      },
+      {
+        "name": "Bechukotai",
+        "hebrewName": "בְּחוקותַי",
+        "book": "Leviticus",
+        "start": { "chapter": 26, "verse": 3 },
+        "end": { "chapter": 27, "verse": 34 }
+      },
+      {
+        "name": "Bamidbar",
+        "hebrewName": "בַּמִּדְבָּר",
+        "book": "Numbers",
+        "start": { "chapter": 1, "verse": 1 },
+        "end": { "chapter": 4, "verse": 20 }
+      },
+      {
+        "name": "Naso",
+        "hebrewName": "נָשֹׂא",
+        "book": "Numbers",
+        "start": { "chapter": 4, "verse": 21 },
+        "end": { "chapter": 7, "verse": 89 }
+      },
+      {
+        "name": "Beha'alotcha",
+        "hebrewName": "בְּהַעֲלוֹתְךָ",
+        "book": "Numbers",
+        "start": { "chapter": 8, "verse": 1 },
+        "end": { "chapter": 12, "verse": 16 }
+      },
+      {
+        "name": "Shelach",
+        "hebrewName": "שְׁלַח",
+        "book": "Numbers",
+        "start": { "chapter": 13, "verse": 1 },
+        "end": { "chapter": 15, "verse": 41 }
+      },
+      {
+        "name": "Korach",
+        "hebrewName": "קֹרַח",
+        "book": "Numbers",
+        "start": { "chapter": 16, "verse": 1 },
+        "end": { "chapter": 18, "verse": 32 }
+      },
+      {
+        "name": "Chukat",
+        "hebrewName": "חֻקַּת",
+        "book": "Numbers",
+        "start": { "chapter": 19, "verse": 1 },
+        "end": { "chapter": 22, "verse": 1 }
+      },
+      {
+        "name": "Balak",
+        "hebrewName": "בָּלָק",
+        "book": "Numbers",
+        "start": { "chapter": 22, "verse": 2 },
+        "end": { "chapter": 25, "verse": 9 }
+      },
+      {
+        "name": "Pinchas",
+        "hebrewName": "פִּינְחָס",
+        "book": "Numbers",
+        "start": { "chapter": 25, "verse": 10 },
+        "end": { "chapter": 30, "verse": 1 }
+      },
+      {
+        "name": "Matot",
+        "hebrewName": "מַּטּוֹת",
+        "book": "Numbers",
+        "start": { "chapter": 30, "verse": 2 },
+        "end": { "chapter": 32, "verse": 42 }
+      },
+      {
+        "name": "Masei",
+        "hebrewName": "מַסעי",
+        "book": "Numbers",
+        "start": { "chapter": 33, "verse": 1 },
+        "end": { "chapter": 36, "verse": 13 }
+      },
+      {
+        "name": "Devarim",
+        "hebrewName": "דְּבָרִים",
+        "book": "Deuteronomy",
+        "start": { "chapter": 1, "verse": 1 },
+        "end": { "chapter": 3, "verse": 22 }
+      },
+      {
+        "name": "Va'etchanan",
+        "hebrewName": "וָאֶתְחַנָּן",
+        "book": "Deuteronomy",
+        "start": { "chapter": 3, "verse": 23 },
+        "end": { "chapter": 7, "verse": 11 }
+      },
+      {
+        "name": "Eikev",
+        "hebrewName": "עֵקֶב",
+        "book": "Deuteronomy",
+        "start": { "chapter": 7, "verse": 12 },
+        "end": { "chapter": 11, "verse": 25 }
+      },
+      {
+        "name": "Re'eh",
+        "hebrewName": "רְאֵה",
+        "book": "Deuteronomy",
+        "start": { "chapter": 11, "verse": 26 },
+        "end": { "chapter": 16, "verse": 17 }
+      },
+      {
+        "name": "Shoftim",
+        "hebrewName": "שֹׁופְטִים",
+        "book": "Deuteronomy",
+        "start": { "chapter": 16, "verse": 18 },
+        "end": { "chapter": 21, "verse": 9 }
+      },
+      {
+        "name": "Ki Teitzei",
+        "hebrewName": "כִּי תֵצֵא",
+        "book": "Deuteronomy",
+        "start": { "chapter": 21, "verse": 10 },
+        "end": { "chapter": 25, "verse": 19 }
+      },
+      {
+        "name": "Ki Tavo",
+        "hebrewName": "כִּי-תָבוֹא",
+        "book": "Deuteronomy",
+        "start": { "chapter": 26, "verse": 1 },
+        "end": { "chapter": 29, "verse": 8 }
+      },
+      {
+        "name": "Nitzavim",
+        "hebrewName": "נִצָּבִים",
+        "book": "Deuteronomy",
+        "start": { "chapter": 29, "verse": 9 },
+        "end": { "chapter": 30, "verse": 20 }
+      },
+      {
+        "name": "Vayelech",
+        "hebrewName": "וַיֵּלֶךְ",
+        "book": "Deuteronomy",
+        "start": { "chapter": 31, "verse": 1 },
+        "end": { "chapter": 31, "verse": 30 }
+      },
+      {
+        "name": "Ha'azinu",
+        "hebrewName": "הַאֲזִינוּ",
+        "book": "Deuteronomy",
+        "start": { "chapter": 32, "verse": 1 },
+        "end": { "chapter": 32, "verse": 52 }
+      },
+      {
+        "name": "V'Zot HaBerachah",
+        "hebrewName": "וְזֹאת הַבְּרָכָה",
+        "book": "Deuteronomy",
+        "start": { "chapter": 33, "verse": 1 },
+        "end": { "chapter": 34, "verse": 12 }
+      }
+    ]
+  }
+  
