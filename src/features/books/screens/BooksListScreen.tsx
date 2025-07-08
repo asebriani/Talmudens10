@@ -1,5 +1,4 @@
 // src/features/books/screens/BooksListScreen.tsx
-
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -7,6 +6,7 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useBooks } from '../hooks/useBooks';
 import { CATEGORY_LABELS, CategorySection } from '../components/CategorySection';
 import { SectionPicker } from '../components/SectionPicker';
+import { DafAmudPicker } from '../components/DafAmudPicker';
 import { PillButton } from '../../../components/PillButton';
 import { Row } from '../../../components/Layout/Row';
 
@@ -57,8 +57,24 @@ export function BooksListScreen({ navigation }: Props): JSX.Element {
         />
       )}
 
-      {/* Section picker */}
-      {selectedBook && (
+      {/* Section / Daf–Amud picker */}
+      {selectedBook && selectedCategoryName === 'Bavli' ? (
+        <DafAmudPicker
+          dafs={Array.from(
+            { length: selectedBook.text.length },
+            (_, i) => i + 1
+          )}
+          selectedDaf={selectedSection}
+          onSelect={(daf, amud) => {
+            // Map daf & amud to your section index; here we just use daf
+            const section = daf;
+            navigation.navigate('BookView', {
+              book: selectedBook,
+              section,
+            });
+          }}
+        />
+      ) : selectedBook ? (
         <SectionPicker
           sections={Array.from(
             { length: selectedBook.text.length },
@@ -72,9 +88,9 @@ export function BooksListScreen({ navigation }: Props): JSX.Element {
               section,
             });
           }}
-          label={selectedCategoryName === 'Bavli' ? 'Daf' : 'Chapter'}
+          label="פרק"
         />
-      )}
+      ) : null}
     </ScrollView>
   );
 }
@@ -82,7 +98,6 @@ export function BooksListScreen({ navigation }: Props): JSX.Element {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
-    // backgroundColor: none, so you get the default background color
   },
   categoryContainer: {
     flexWrap: 'wrap',
