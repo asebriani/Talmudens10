@@ -1,18 +1,22 @@
 // src/features/books/components/SectionPicker.tsx
 
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Row } from '../../../components/Layout/Row';
-import { PillButton } from '../../../components/PillButton';
+import React, { useEffect, useState } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+} from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 
 interface SectionPickerProps {
   /** array of 1-based section numbers */
   sections: number[];
   /** currently highlighted section, or null */
   selected: number | null;
-  /** called when user taps a section */
+  /** called when user taps Next */
   onSelect: (n: number) => void;
-  /** label text above row (“Chapter” or “Daf”) */
+  /** label text above picker (“Chapter” or “Daf”) */
   label: string;
 }
 
@@ -21,38 +25,88 @@ export const SectionPicker: React.FC<SectionPickerProps> = ({
   selected,
   onSelect,
   label,
-}) => (
-  <View style={styles.container}>
-    <Text style={styles.title}>{label}</Text>
-    <Row reverse style={styles.row}>
-      {sections.map(n => (
-        <PillButton
-          key={n}
-          text={`${n}`}
-          onPress={() => onSelect(n)}
-          style={selected === n ? styles.selected : undefined}
-        />
-      ))}
-    </Row>
-  </View>
-);
+}) => {
+  // Local state for wheel selection
+  const [value, setValue] = useState<number>(selected ?? sections[0]);
+
+  // Keep local value in sync if parent `selected` changes
+  useEffect(() => {
+    if (selected != null) {
+      setValue(selected);
+    }
+  }, [selected]);
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>{label}</Text>
+
+      <View style={styles.pickerWrapper}>
+        <Picker
+          selectedValue={value}
+          onValueChange={setValue}
+          style={styles.picker}
+          itemStyle={styles.pickerItem}
+        >
+          {sections.map(n => (
+            <Picker.Item key={n} label={`${n}`} value={n} />
+          ))}
+        </Picker>
+      </View>
+
+      <Pressable
+        onPress={() => onSelect(value)}
+        style={({ pressed }) => [
+          styles.nextButton,
+          pressed && styles.nextButtonPressed,
+        ]}
+      >
+        <Text style={styles.nextText}>Next</Text>
+      </Pressable>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     marginBottom: 24,
+    alignItems: 'center',
   },
   title: {
+    alignSelf: 'stretch',
+    textAlign: 'right',
+    paddingHorizontal: 16,
+    marginBottom: 8,
     fontSize: 20,
     fontWeight: '600',
-    marginBottom: 8,
-    textAlign: 'right',
   },
-  row: {
-    flexWrap: 'wrap',
-    justifyContent: 'center',
+  pickerWrapper: {
+    width: '60%',
+    height: 150,               // wheel height
+    borderRadius: 8,
+    overflow: 'hidden',
+    backgroundColor: '#fff',
+    borderColor: '#ccc',
+    borderWidth: 1,
+    marginBottom: 16,
   },
-  selected: {
-    backgroundColor: '#ddd',
-    borderColor: '#555',
+  picker: {
+    flex: 1,
+  },
+  pickerItem: {
+    fontSize: 18,
+  },
+  nextButton: {
+    backgroundColor: '#007AFF',
+    paddingVertical: 10,
+    paddingHorizontal: 24,
+    borderRadius: 4,
+  },
+  nextButtonPressed: {
+    backgroundColor: '#005BBB',
+  },
+  nextText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '500',
   },
 });
