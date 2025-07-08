@@ -1,11 +1,11 @@
 // src/features/books/screens/BookScreen.tsx
-
 import React from 'react';
 import { ScrollView, Text } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import type { RootStackParamList } from '../../../App';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Book'>;
+import type { NewNoteParamList } from '../../../navigation/NewNoteStack';
+
+type Props = NativeStackScreenProps<NewNoteParamList, 'BookView'>;
 
 export function BookScreen({ route }: Props): JSX.Element {
   const { book, section } = route.params;
