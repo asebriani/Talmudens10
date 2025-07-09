@@ -38,7 +38,7 @@ const NewNoteStack: React.FC = () => (
     <Stack.Screen
       name="BookView"
       component={BookScreen}
-      options={{ title: 'Book Details' }}
+      options={{ title: 'Text' }}
     />
     <Stack.Screen
       name="SectionPicker"
