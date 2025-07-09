@@ -1,5 +1,3 @@
-// src/features/books/screens/BooksListScreen.tsx
-
 import React, { useState } from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
 import type { NativeStackScreenProps } from '@react-navigation/native-stack'
@@ -7,11 +5,9 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useBooks } from '../hooks/useBooks'
 import { useParshiyot } from '../hooks/useParshiyot'
 import { CATEGORY_LABELS, CategorySection } from '../components/CategorySection'
-import { ChoiceList } from '../../../components/ChoiceList'
-import { DafAmudPicker } from '../components/DafAmudPicker'
+import { SelectionList } from '../../../components/SelectionList'
 import { PillButton } from '../../../components/PillButton'
 import { Row } from '../../../components/Layout/Row'
-
 import { SEDARIM_LABELS, mishnahSedarim, bavliSedarim } from '../data/sedarim'
 import { intToHebrew } from '../../../utils/hebrew'
 
@@ -63,7 +59,7 @@ export function BooksListScreen({ navigation }: Props) {
         ))}
       </Row>
 
-      {/* ── Books grid for Torah, Prophets & Writings ── */}
+      {/*── Books grid for Torah, Prophets & Writings ──*/}
       {['Torah', 'Prophets', 'Writings'].includes(selectedCategory!) && (
         <CategorySection
           category={categories.find(c => c.name === selectedCategory!)!}
@@ -72,9 +68,9 @@ export function BooksListScreen({ navigation }: Props) {
         />
       )}
 
-      {/* ── Seder chooser (Mishnah / Bavli) ── */}
+      {/*── Seder chooser for Mishnah / Bavli ──*/}
       {(selectedCategory === 'Mishnah' || selectedCategory === 'Bavli') && (
-        <ChoiceList
+        <SelectionList
           label="סדר"
           mode="button"
           options={(
@@ -90,7 +86,7 @@ export function BooksListScreen({ navigation }: Props) {
         />
       )}
 
-      {/* ── Tractates grid for Mishnah ── */}
+      {/*── Tractates grid for Mishnah & Bavli ──*/}
       {selectedCategory === 'Mishnah' && selectedSeder && (
         <CategorySection
           category={{
@@ -103,8 +99,6 @@ export function BooksListScreen({ navigation }: Props) {
           selectedBookId={selectedBook?.id}
         />
       )}
-
-      {/* ── Tractates grid for Bavli ── */}
       {selectedCategory === 'Bavli' && selectedSeder && (
         <CategorySection
           category={{
@@ -118,108 +112,68 @@ export function BooksListScreen({ navigation }: Props) {
         />
       )}
 
-      {/* ── Parsha chooser for Torah ── */}
+      {/*── Parsha chooser for Torah ──*/}
       {selectedCategory === 'Torah' && selectedBook && (
-        <ChoiceList
+        <SelectionList
           label="פרשה"
           mode="button"
           options={(parshiyotByBook[selectedBook.id] ?? []).map(p => ({
-            value: p.name,
+            value: p,
             label: p.hebrewName,
           }))}
-          selected={selectedParsha?.name ?? null}
-          onSelect={name => {
-            const p = (parshiyotByBook[selectedBook.id] ?? []).find(
-              x => x.name === name
-            )!
+          selected={selectedParsha ?? null}
+          onSelect={p => {
             setSelectedParsha(p)
+            setSelectedSection(null)
           }}
+          itemStyle={{ fontSize: 18 }}
         />
       )}
 
-      {/* ── Chapter chooser for a Torah parsha ── */}
-      {selectedCategory === 'Torah' &&
-        selectedBook &&
-        selectedParsha && (
-          <ChoiceList
-            label="פרק"
-            mode="picker"
-            options={Array.from(
-              {
-                length:
-                  selectedParsha.end.chapter -
-                    selectedParsha.start.chapter +
-                  1,
-              },
-              (_, i) => {
-                const ch = selectedParsha.start.chapter + i
-                return { value: ch, label: intToHebrew(ch) }
-              }
-            )}
-            selected={selectedSection}
-            onSelect={chapter =>
-              navigation.navigate('BookView', {
-                book: selectedBook,
-                section: chapter,
-              })
-            }
-          />
-        )}
-
-      {/* ── Chapter chooser for Mishnah ── */}
-      {selectedCategory === 'Mishnah' && selectedBook && (
-        <ChoiceList
-          label="פרק"
-          mode="picker"
-          options={selectedBook.text.map((_, i) => ({
-            value: i + 1,
-            label: intToHebrew(i + 1),
-          }))}
-          selected={selectedSection}
-          onSelect={section =>
-            navigation.navigate('BookView', {
-              book: selectedBook,
-              section,
-            })
+      {/*── Chapter / Section chooser ──*/}
+      {selectedBook && (
+        <SelectionList
+          label={
+            selectedCategory === 'Bavli'
+              ? 'דף'
+              : selectedCategory === 'Torah'
+              ? 'פרק'
+              : 'פרק'
           }
-        />
-      )}
-
-      {/* ── Daf–Amud picker for Bavli ── */}
-      {selectedCategory === 'Bavli' && selectedBook && (
-        <DafAmudPicker
-          dafs={Array.from({ length: selectedBook.text.length }, (_, i) => i + 1)}
-          selectedDaf={selectedSection}
-          onSelect={(daf, amud) => {
-            setSelectedSection(daf)
-            navigation.navigate('BookView', {
-              book: selectedBook,
-              section: daf,
-            })
-          }}
-        />
-      )}
-
-      {/* ── Chapter chooser for Prophets & Writings ── */}
-      {selectedBook &&
-        selectedCategory &&
-        !['Torah', 'Mishnah', 'Bavli'].includes(selectedCategory) && (
-          <ChoiceList
-            label="פרק"
-            mode="picker"
-            options={selectedBook.text.map((_, i) => ({
+          mode="picker"
+          options={(() => {
+            // Bavli text array is [daf][amud], but we index just by daf
+            const count =
+              selectedCategory === 'Bavli'
+                ? selectedBook.text.length
+                : selectedBook.text.length
+            return Array.from({ length: count }, (_, i) => ({
               value: i + 1,
-              label: intToHebrew(i + 1),
-            }))}
-            selected={selectedSection}
-            onSelect={section =>
+              label:
+                selectedCategory === 'Bavli'
+                  ? intToHebrew(i + 1)
+                  : intToHebrew(i + 1),
+            }))
+          })()}
+          selected={selectedSection}
+          onSelect={n => {
+            setSelectedSection(n)
+            if (selectedCategory === 'Bavli') {
               navigation.navigate('BookView', {
-                book: selectedBook,
-                section,
+                book: selectedBook!,
+                section: n,
+              })
+            } else {
+              navigation.navigate('BookView', {
+                book: selectedBook!,
+                section: n,
               })
             }
-          />
-        )}
+          }}
+          confirmLabel="Next"
+          itemStyle={{ fontSize: 18 }}
+        />
+      )}
     </ScrollView>
   )
 }

@@ -1,5 +1,3 @@
-// src/components/ChoiceList.tsx
-
 import React, { useState, useEffect } from 'react'
 import {
   View,
@@ -12,45 +10,44 @@ import {
 import { Picker } from '@react-native-picker/picker'
 import { PillButton } from './PillButton'
 
-export type Option<T extends string | number> = {
-  value: T
-  label: string
-}
+export type Option<T> = { value: T; label: string }
 
-export interface ChoiceListProps<T extends string | number> {
-  /** Title shown above */
+export interface SelectionListProps<T> {
+  /** Label shown above the buttons or picker */
   label: string
-  /** List of value/label options */
+  /** The options to choose from */
   options: Option<T>[]
   /** Currently selected value (or null) */
   selected: T | null
-  /** Called when user taps “Next” (picker) or a button (button mode) */
+  /** Called when user confirms a pick (button tap or Next) */
   onSelect: (value: T) => void
-  /** “button” = row of pills; “picker” = native wheel + Next button */
+  /** "button" = row of pills; "picker" = native wheel + Next button */
   mode?: 'button' | 'picker'
-  /** override container */
-  containerStyle?: ViewStyle
-  /** override text in buttons or picker items */
-  itemStyle?: TextStyle
-  /** override default “Next” label */
+  /** Override the "Next" label in picker mode */
   confirmLabel?: string
+  /** Style override for the container View */
+  containerStyle?: ViewStyle
+  /** Style override for items (buttons or picker rows) */
+  itemStyle?: TextStyle
 }
 
-export function ChoiceList<T extends string | number>({
+export function SelectionList<T>({
   label,
   options,
   selected,
   onSelect,
   mode = 'button',
+  confirmLabel = 'Next',
   containerStyle,
   itemStyle,
-  confirmLabel = 'Next',
-}: ChoiceListProps<T>) {
+}: SelectionListProps<T>) {
   const [current, setCurrent] = useState<T>(selected ?? options[0].value)
 
-  // if parent selected changes, sync
+  // keep our internal state in sync if parent drives 'selected'
   useEffect(() => {
-    if (selected != null) setCurrent(selected)
+    if (selected != null) {
+      setCurrent(selected)
+    }
   }, [selected])
 
   return (
@@ -106,15 +103,15 @@ export function ChoiceList<T extends string | number>({
 const styles = StyleSheet.create({
   container: {
     marginBottom: 24,
-    alignItems: 'center',            // <–– center everything
+    alignItems: 'center',
   },
   title: {
     fontSize: 20,
     fontWeight: '600',
     textAlign: 'right',
-    marginBottom: 8,
     alignSelf: 'stretch',
     paddingHorizontal: 16,
+    marginBottom: 8,
   },
   row: {
     flexDirection: 'row',
