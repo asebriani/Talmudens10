@@ -18,7 +18,7 @@ export const ParshaPicker: React.FC<ParshaPickerProps> = ({
   onSelect,
 }) => (
   <View style={styles.container}>
-    <Text style={styles.title}>בחר פרשה</Text>
+    <Text style={styles.title}>פרשה</Text>
     <Row reverse style={styles.buttons}>
       {parshiyot.map(p => (
         <PillButton

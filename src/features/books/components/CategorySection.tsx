@@ -1,4 +1,5 @@
 // src/features/books/components/CategorySection.tsx
+
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Row } from '../../../components/Layout/Row';
@@ -17,11 +18,14 @@ export const CATEGORY_LABELS: Record<string, string> = {
 interface Props {
   category: Category;
   onBookPress?: (book: Book) => void;
+  /** the currently selected book ID, for highlighting */
+  selectedBookId?: string;
 }
 
 export function CategorySection({
   category,
   onBookPress = () => {},
+  selectedBookId,
 }: Props): JSX.Element {
   const isMishnah = category.name === 'Mishnah';
 
@@ -37,6 +41,11 @@ export function CategorySection({
             book={book}
             onPress={() => onBookPress(book)}
             isMishnah={isMishnah}
+            style={
+              book.id === selectedBookId
+                ? styles.selectedBook
+                : undefined
+            }
           />
         ))}
       </Row>
@@ -57,5 +66,9 @@ const styles = StyleSheet.create({
   booksContainer: {
     flexWrap: 'wrap',
     justifyContent: 'center',
+  },
+  selectedBook: {
+    backgroundColor: '#ddd',
+    borderColor:   '#555',
   },
 });

@@ -58,6 +58,15 @@ export function BooksListScreen({ navigation }: Props): JSX.Element {
         ))}
       </Row>
 
+      {/* Books grid for Torah, Prophets & Writings */}
+      {['Torah', 'Prophets', 'Writings'].includes(selectedCategoryName!) && (
+        <CategorySection
+          category={categories.find(c => c.name === selectedCategoryName)!}
+          onBookPress={handleBookPress}
+          selectedBookId={selectedBook?.id}
+        />
+      )}
+
       {/* Always show SederPicker when Mishnah or Bavli is selected */}
       {(selectedCategoryName === 'Mishnah' || selectedCategoryName === 'Bavli') && (
         <SederPicker
@@ -81,6 +90,7 @@ export function BooksListScreen({ navigation }: Props): JSX.Element {
               .books.filter(b => mishnahSedarim[selectedSeder].includes(b.id)),
           }}
           onBookPress={handleBookPress}
+          selectedBookId={selectedBook?.id}
         />
       )}
       {selectedCategoryName === 'Bavli' && selectedSeder && (
@@ -92,6 +102,7 @@ export function BooksListScreen({ navigation }: Props): JSX.Element {
               .books.filter(b => bavliSedarim[selectedSeder].includes(b.id)),
           }}
           onBookPress={handleBookPress}
+          selectedBookId={selectedBook?.id}
         />
       )}
 
