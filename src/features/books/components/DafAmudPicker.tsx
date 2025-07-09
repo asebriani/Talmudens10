@@ -1,7 +1,9 @@
 // src/features/books/components/DafAmudPicker.tsx
+
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import { intToHebrew } from '../../../utils/hebrew';
 
 interface DafAmudPickerProps {
   /** all available dafs (1-based) */
@@ -53,7 +55,7 @@ export const DafAmudPicker: React.FC<DafAmudPickerProps> = ({
             itemStyle={styles.pickerItem}
           >
             {dafs.map(n => (
-              <Picker.Item key={n} label={`${n}`} value={n} />
+              <Picker.Item key={n} label={intToHebrew(n)} value={n} />
             ))}
           </Picker>
         </View>

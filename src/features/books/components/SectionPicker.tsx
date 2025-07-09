@@ -8,6 +8,7 @@ import {
   Pressable,
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import { intToHebrew } from '../../../utils/hebrew';
 
 interface SectionPickerProps {
   /** array of 1-based section numbers */
@@ -26,10 +27,8 @@ export const SectionPicker: React.FC<SectionPickerProps> = ({
   onSelect,
   label,
 }) => {
-  // Local state for wheel selection
   const [value, setValue] = useState<number>(selected ?? sections[0]);
 
-  // Keep local value in sync if parent `selected` changes
   useEffect(() => {
     if (selected != null) {
       setValue(selected);
@@ -48,7 +47,7 @@ export const SectionPicker: React.FC<SectionPickerProps> = ({
           itemStyle={styles.pickerItem}
         >
           {sections.map(n => (
-            <Picker.Item key={n} label={`${n}`} value={n} />
+            <Picker.Item key={n} label={intToHebrew(n)} value={n} />
           ))}
         </Picker>
       </View>
@@ -81,7 +80,7 @@ const styles = StyleSheet.create({
   },
   pickerWrapper: {
     width: '60%',
-    height: 150,               // wheel height
+    height: 150,
     borderRadius: 8,
     overflow: 'hidden',
     backgroundColor: '#fff',
